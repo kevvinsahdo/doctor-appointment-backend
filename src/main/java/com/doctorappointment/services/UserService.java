@@ -13,23 +13,22 @@ import com.doctorappointment.services.exceptions.UserConflictException;
 
 @Service
 public class UserService {
-	
+
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private UserRepository userRepository;
-	
-	public User singIn(UserDTO userDTO) {
+
+	public User singUp(UserDTO userDTO) {
 		Optional<User> user = userRepository.findByEmail(userDTO.getEmail());
-		
-		System.out.println("----------------" + userDTO.getPassword());
-		
+
 		if (user.orElse(null) != null) {
 			throw new UserConflictException("User already exist");
 		}
-		
-		User newUser = new User(null, userDTO.getName(), userDTO.getEmail(), passwordEncoder.encode(userDTO.getPassword()));
+
+		User newUser = new User(null, userDTO.getName(), userDTO.getEmail(),
+				passwordEncoder.encode(userDTO.getPassword()));
 
 		return userRepository.save(newUser);
 	}

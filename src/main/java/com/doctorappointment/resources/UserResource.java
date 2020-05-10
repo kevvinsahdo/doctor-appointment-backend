@@ -21,13 +21,13 @@ public class UserResource {
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value = "/signIn", method = RequestMethod.POST)
-	public ResponseEntity<?> signIn(@RequestBody Map<String, Object> payload) {
+	@RequestMapping(value = "/signUp", method = RequestMethod.POST)
+	public ResponseEntity<?> signUp(@RequestBody Map<String, Object> payload) {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		UserDTO userDTO = objectMapper.convertValue(payload, UserDTO.class);
 		
-		User newUser = userService.singIn(userDTO);
+		User newUser = userService.singUp(userDTO);
 
 		return ResponseEntity.ok().body(newUser);
 	}

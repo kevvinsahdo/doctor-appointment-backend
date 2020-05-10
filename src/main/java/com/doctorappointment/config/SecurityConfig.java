@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
-	private static final String[] PUBLIC = { "/users/signIn/**" };
+	private static final String[] PUBLIC = { "/users/signUp/**" };
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
